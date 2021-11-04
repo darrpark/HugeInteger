@@ -9,10 +9,10 @@ namespace HugeIntegers
     class HugeInteger
     {
         // Attributes of a Huge Integer.
-        public string number;               // the actual huge integer number
-        public int[] digits;                // array to store the string values as separate integer digits
-        public int significant_digits;      // number of significant digits (does not count leading 0s)
-        public bool is_negative;            // determines if the huge integer is negative
+        private string number;               // the actual huge integer number
+        private int[] digits;                // array to store the string values as separate integer digits
+        private int significant_digits;      // number of significant digits (does not count leading 0s)
+        private bool is_negative;            // determines if the huge integer is negative
 
         // Different creations of HugeInteger.
         public HugeInteger()                // Default Huge Integer with nothing inside
@@ -56,7 +56,7 @@ namespace HugeIntegers
             for (int i = 0; i < this.digits.Length; i++)
             {
                 int result;
-                if (Int32.TryParse(input[i].ToString(), out result))
+                if (Int32.TryParse(input[i].ToString(), out result))    // I actually have 0 experience with exception handling. But likely output that an integer was not input and don't allow operations on this value.
                 {
                     this.digits[i] = result;
                 }
@@ -570,6 +570,22 @@ namespace HugeIntegers
                 return true;
             else
                 return false;
+        }
+
+        // Getters for data members/attributes. Not really sure how to apply setters here since all the attributes are reliant on each other but use FillHugeIntArray("number") to update attributes all at once
+        public string getNumber()
+        {
+            return number;
+        }
+
+        public int getSigDigits()
+        {
+            return significant_digits;
+        }
+
+        public bool getNeg()
+        {
+            return is_negative;
         }
 
         public override string ToString()
